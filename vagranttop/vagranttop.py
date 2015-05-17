@@ -294,13 +294,13 @@ class Top:
     def get_vagrant_comment(self, cmdline):
         found_comment = False
         vagrant_comment = None
-        print "cmdline: ", cmdline
-        for arg in cmdline:
-            print arg
-            if found_comment:
-                return arg
-            if '--comment' == arg:
-                found_comment = True
+        if cmdline:
+            for arg in cmdline:
+                print arg
+                if found_comment:
+                    return arg
+                if '--comment' == arg:
+                    found_comment = True
 
 
     def _get_vagrant_machines(self):
