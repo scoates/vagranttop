@@ -224,14 +224,24 @@ class Top:
             else:
                 username = ""
 
+            try:
+                time_sum = int(p.dict['time_sum'])
+            except ValueError:
+                time_sum = 0
+
+            try:
+                vm_id = " " + p.dict['vm_id']
+            except TypeError:
+                vm_id = " (none)"
+
             line = templ.format(
                 pid=p.pid,
                 cpu_percent=p.dict['cpu_percent'],
                 memory_percent=p.dict['memory_percent'],
-                time_sum="{0:0>8}".format(str(timedelta(seconds=int(p.dict['time_sum'])))),
+                time_sum="{0:0>8}".format(str(timedelta(seconds=time_sum))),
                 vm_dir=" " + p.dict['vm_dir'],
                 vm_name=" " + p.dict['vm_name'],
-                vm_id=" " + p.dict['vm_id'],
+                vm_id=vm_id,
                 vm_load=p.dict['vm_load']
             )
             try:
